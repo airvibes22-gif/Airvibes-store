@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AirVibes Studio + Store</title>
+  <meta name="theme-color" content="#000000" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script defer src="/app.js"></script>
+</head>
+<body>
+  <div id="loginOverlay" class="overlay-screen hidden" aria-hidden="true">
+    <div class="login-card">
+      <div class="brand">AIRVIBES</div>
+      <div class="sub">Studio privado · acceso administrador</div>
+      <form id="loginForm" class="stack-md">
+        <div class="field">
+          <label for="loginEmail">Correo</label>
+          <input id="loginEmail" type="email" autocomplete="username" placeholder="admin@airvibes.local" required />
+        </div>
+        <div class="field">
+          <label for="loginPassword">Contraseña</label>
+          <input id="loginPassword" type="password" autocomplete="current-password" placeholder="Tu clave" required />
+        </div>
+        <div class="actions actions-2">
+          <button type="button" id="continueStoreBtn" class="btn">Seguir a tienda</button>
+          <button type="submit" class="btn btn-accent">Entrar</button>
+        </div>
+        <div id="loginError" class="helper danger hidden">Credenciales inválidas.</div>
+      </form>
+    </div>
+  </div>
+
+  <div class="app">
+    <header class="topbar">
+      <div>
+        <div class="brand">AIRVIBES</div>
+        <div class="sub">Studio + Store · Curated · Verified · Delivered</div>
+      </div>
+      <div class="topbar-actions">
+        <div class="tabs">
+          <button id="tabStudio" type="button" class="tab hidden">Studio</button>
+          <button id="tabStore" type="button" class="tab active">Store</button>
+        </div>
+        <div class="session-box">
+          <span id="sessionInfo" class="helper">Modo público</span>
+          <button id="openAdminBtn" type="button" class="btn small">Admin</button>
+          <button id="logoutBtn" type="button" class="btn small hidden">Salir</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="studioSection" class="section hidden">
+        <div class="grid2">
+          <div class="panel">
+            <div class="panel-body">
+              <div class="switches">
+                <button id="formatPostBtn" type="button" class="btn btn-accent">Post cuadrado</button>
+                <button id="formatStoryBtn" type="button" class="btn">Story 9:16</button>
+              </div>
+
+              <div id="captureTarget" class="canvas canvas-post">
+                <img id="previewImg" class="canvas-img hidden" alt="Vista previa del producto" />
+                <div class="canvas-overlay"></div>
+                <div class="brand-top">
+                  <div class="brand-word">AIRVIBES</div>
+                  <div id="previewCategoryBrand" class="brand-cat">LAB</div>
+                  <div class="brand-claim">Curated · Verified · Delivered</div>
+                </div>
+                <div id="previewPrice" class="price-tag">$0</div>
+                <div class="bottom-copy">
+                  <div class="pill-row">
+                    <span id="previewTag" class="pill pill-main">IMPORTADOS</span>
+                    <span id="previewSize" class="pill">Talla por confirmar</span>
+                    <span id="previewStatus" class="pill">Disponible</span>
+                  </div>
+                  <h1 id="previewName" class="preview-name">MODELO AIRVIBES</h1>
+                  <p class="preview-copy">
+                    <span id="previewCopyText">Compra por DM o WhatsApp · Envíos nacionales</span>
+                    <span class="preview-handle">@airvibes</span>
+                  </p>
+                </div>
+              </div>
+
+              <p class="helper helper-spaced">Studio genera artes, guarda productos reales en la base de datos y publica links que sí funcionan para cualquier cliente.</p>
+            </div>
+          </div>
+
+          <div class="stack-lg">
+            <div class="panel">
+              <div class="panel-body">
+                <div class="category-row">
+                  <button id="categorySelectBtn" type="button" class="chip">Select</button>
+                  <button id="categoryLabBtn" type="button" class="chip active">Lab</button>
+                  <button id="categoryEssentialsBtn" type="button" class="chip">Essentials</button>
+                </div>
+
+                <div class="form-grid">
+                  <div class="field full">
+                    <label for="productName">Nombre del modelo</label>
+                    <input id="productName" type="text" maxlength="120" placeholder="Ej. Jordan 4 Retro Military Black" />
+                  </div>
+                  <div class="field">
+                    <label for="productPrice">Precio</label>
+                    <input id="productPrice" type="text" inputmode="numeric" placeholder="129900" />
+                  </div>
+                  <div class="field">
+                    <label for="productSizes">Tallas</label>
+                    <input id="productSizes" type="text" placeholder="40, 41, 42" />
+                  </div>
+                  <div class="field">
+                    <label for="productStatus">Estado</label>
+                    <select id="productStatus">
+                      <option value="available">Disponible</option>
+                      <option value="last_unit">Última unidad</option>
+                      <option value="reserved">Reservado</option>
+                      <option value="sold">Vendido</option>
+                    </select>
+                  </div>
+                  <div class="field full">
+                    <label for="productCopy">Texto de venta</label>
+                    <textarea id="productCopy" maxlength="500" placeholder="Escríbenos por DM o WhatsApp para separar este par."></textarea>
+                  </div>
+                  <div class="field full">
+                    <label for="imgMain">Foto principal</label>
+                    <input id="imgMain" type="file" accept="image/*" />
+                  </div>
+                  <div class="field">
+                    <label for="img2">Foto 2</label>
+                    <input id="img2" type="file" accept="image/*" />
+                  </div>
+                  <div class="field">
+                    <label for="img3">Foto 3</label>
+                    <input id="img3" type="file" accept="image/*" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="panel-body">
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="cost">Costo</label>
+                    <input id="cost" type="text" inputmode="numeric" placeholder="80000" />
+                  </div>
+                  <div class="field">
+                    <label for="ship">Envío</label>
+                    <input id="ship" type="text" inputmode="numeric" placeholder="15000" />
+                  </div>
+                  <div class="field full">
+                    <label for="extra">Extra</label>
+                    <input id="extra" type="text" inputmode="numeric" placeholder="0" />
+                  </div>
+                </div>
+                <div class="metrics">
+                  <div class="metric">
+                    <small>Venta</small>
+                    <strong id="metricSale">$0</strong>
+                  </div>
+                  <div class="metric">
+                    <small>Ganancia</small>
+                    <strong id="metricProfit">$0</strong>
+                  </div>
+                  <div class="metric">
+                    <small>Margen</small>
+                    <strong id="metricMargin">0%</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="panel-body stack-md">
+                <div class="actions actions-3">
+                  <button id="downloadDesignBtn" type="button" class="btn">Descargar</button>
+                  <button id="copyWhatsBtn" type="button" class="btn">WhatsApp</button>
+                  <button id="copyCaptionBtn" type="button" class="btn">Caption</button>
+                </div>
+                <div class="actions actions-3">
+                  <button id="saveProductBtn" type="button" class="btn btn-accent">Guardar en Store</button>
+                  <button id="cancelEditBtn" type="button" class="btn hidden">Cancelar edición</button>
+                  <button id="clearStudioBtn" type="button" class="btn">Limpiar</button>
+                  <button id="goStoreBtn" type="button" class="btn">Ir a Store</button>
+                </div>
+                <div id="studioFeedback" class="helper">Todo lo que guardes se publica desde la base de datos, no desde este navegador.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="storeSection" class="section">
+        <div id="storeHome" class="stack-lg">
+          <div class="panel">
+            <div class="panel-body stack-md">
+              <div class="topbar compact">
+                <div>
+                  <div class="brand brand-small">AIRVIBES STORE</div>
+                  <div class="sub">Catálogo público, filtros reales y cierre por WhatsApp</div>
+                </div>
+                <button id="requestStudioBtn" type="button" class="btn">Studio</button>
+              </div>
+
+              <div class="filter-block">
+                <div class="helper">Categoría</div>
+                <div class="store-filters">
+                  <button data-category-filter="all" type="button" class="store-btn active">Todos</button>
+                  <button data-category-filter="select" type="button" class="store-btn">Select</button>
+                  <button data-category-filter="lab" type="button" class="store-btn">Lab</button>
+                  <button data-category-filter="essentials" type="button" class="store-btn">Essentials</button>
+                </div>
+              </div>
+
+              <div class="filter-block">
+                <div class="helper">Vista rápida</div>
+                <div class="store-filters">
+                  <button data-quick-filter="all" type="button" class="store-btn active">Todos</button>
+                  <button data-quick-filter="stock" type="button" class="store-btn">En stock</button>
+                  <button data-quick-filter="fav" type="button" class="store-btn">Favoritos</button>
+                  <button data-quick-filter="new" type="button" class="store-btn">Nuevos</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="storeGrid" class="store-grid"></div>
+          <div id="emptyStore" class="helper empty hidden">No hay productos publicados todavía.</div>
+
+          <div class="cartbar">
+            <div>
+              <div class="helper">Carrito local del cliente</div>
+              <div id="cartList" class="cartlist">Carrito vacío</div>
+            </div>
+            <div class="actions actions-2 cart-actions">
+              <button id="clearCartBtn" type="button" class="btn">Vaciar</button>
+              <button id="checkoutCartBtn" type="button" class="btn btn-accent">Checkout WhatsApp</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="productViewer" class="viewer hidden">
+          <button id="backToStoreBtn" type="button" class="btn back-btn">← Volver a tienda</button>
+          <div class="viewer-grid">
+            <div class="panel">
+              <div class="panel-body gallery">
+                <img id="mainViewerImg" class="gallery-main" alt="Producto AirVibes" />
+                <div id="thumbs" class="thumbs"></div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-body stack-md">
+                <div id="viewerBadges" class="badge-row"></div>
+                <h2 id="viewerName" class="viewer-name"></h2>
+                <div id="viewerPrice" class="viewer-price"></div>
+                <div id="viewerCopy" class="helper viewer-copy"></div>
+                <div class="field">
+                  <label for="viewerSize">Talla</label>
+                  <select id="viewerSize"></select>
+                </div>
+                <div class="actions actions-2">
+                  <button id="buyNowBtn" type="button" class="btn btn-accent">Reservar / Comprar</button>
+                  <button id="addCurrentToCartBtn" type="button" class="btn">Agregar al carrito</button>
+                </div>
+                <div class="actions actions-2">
+                  <button id="copyCurrentLinkBtn" type="button" class="btn">Copiar link</button>
+                  <button id="toggleFavCurrentBtn" type="button" class="btn">Favorito</button>
+                </div>
+                <div id="adminViewerActions" class="actions actions-2 hidden">
+                  <button id="editCurrentBtn" type="button" class="btn">Editar</button>
+                  <button id="deleteCurrentBtn" type="button" class="btn danger-btn">Eliminar</button>
+                </div>
+                <div id="viewerViews" class="helper"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
