@@ -10,6 +10,7 @@ const productRoutes = require('./routes/products');
 const uploadRoutes = require('./routes/uploads');
 
 const app = express();
+app.set('trust proxy', 1);
 const port = Number(process.env.PORT || 3000);
 const publicDir = path.join(process.cwd(), 'public');
 const uploadDir = path.join(process.cwd(), 'uploads');
