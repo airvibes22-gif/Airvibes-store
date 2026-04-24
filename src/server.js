@@ -11,7 +11,8 @@ const uploadRoutes = require('./routes/uploads');
 
 const app = express();
 app.set('trust proxy', 1);
-const port = Number(process.env.PORT || 3000);
+
+const PORT = Number(process.env.PORT || 3000);
 const publicDir = path.join(process.cwd(), 'public');
 const uploadDir = path.join(process.cwd(), 'uploads');
 
@@ -84,14 +85,16 @@ app.use((error, _req, res, _next) => {
 });
 
 async function start() {
-  await prisma.$connect();
-  app.listen(port, () => {
-    console.log(`AirVibes listo en http://localhost:${port}`);
-  });
-}
+    await prisma.$connect();
 
-start().catch(async (error) => {
-  console.error('No se pudo iniciar el servidor', error);
-  await prisma.$disconnect();
-  process.exit(1);
-});
+      app.listen(PORT, '0.0.0.0', () => {
+          console.log(`AirVibes listo en http://localhost:${PORT}`);
+            });
+            }
+
+            start().catch(async (error) => {
+              console.error('No se pudo iniciar el servidor', error);
+                await prisma.$disconnect();
+                  process.exit(1);
+                  });
+
