@@ -513,6 +513,10 @@ textarea {
   margin-top: 6px;
 }
 
+.card-actions .btn {
+  font-size: 13px;
+}
+
 .empty {
   text-align: center;
   padding: 32px;
