@@ -697,7 +697,7 @@ buyBtn.addEventListener('click', () => {
     product.name,
     money(product.price),
     `Categoría: ${categoryLabel(product.category)}`,
-    `Talla: ${product.sizes?.[0] || 'Por confirmar'}`,
+    `Talla: ${Array.isArray(product.sizes) ? product.sizes[0] || 'Por confirmar' : 'Por confirmar'}`,
     `Estado: ${statusLabel(product.status)}`,
     `Link: ${productUrl(product.slug)}`
   ]);
