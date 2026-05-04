@@ -1,6 +1,6 @@
 :root {
   --bg: #000;
-  --card: #0b0b0b;
+  --card: #060606;
   --line: #1a1a1a;
   --accent: #ff5a1f;
   --text: #fff;
@@ -105,7 +105,7 @@ img {
   color: #fff;
   font-weight: 600;
   letter-spacing: 0.5px;
-    }
+  }
 
 .tab:hover,
 .btn:hover,
@@ -656,12 +656,15 @@ textarea {
   .actions-3,
   .switches,
   .category-row,
-  .store-grid,
   .card-actions,
   .card-actions.admin {
     grid-template-columns: 1fr;
   }
 
+  .store-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  
   .preview-name,
   .viewer-name {
     font-size: 38px;
@@ -750,7 +753,7 @@ textarea {
   margin: 6px 0 12px;
   color: #bbb;
   font-size: 14px;
-  }
+}
 
 .featured-info .btn {
   padding: 10px 16px;
