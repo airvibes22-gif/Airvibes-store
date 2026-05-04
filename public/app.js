@@ -621,6 +621,28 @@ function renderStore() {
   const items = filteredProducts();
   dom.emptyStore.classList.toggle('hidden', items.length > 0);
 
+  const featured = items[0];
+
+  if (featured) {
+  const hero = document.createElement('div');
+  hero.className = 'featured-product';
+
+  hero.innerHTML = `
+    <img src="${featured.coverImage}" class="featured-img" />
+    <div class="featured-info">
+      <h2>${featured.name}</h2>
+      <p>$${featured.price}</p>
+      <button class="btn btn-accent">Ver producto</button>
+    </div>
+  `;
+
+  hero.querySelector('button').onclick = () => {
+    openProduct(featured.slug, { countView: true, syncUrl: true });
+  };
+
+  dom.storeGrid.appendChild(hero);
+  }
+  
   items.forEach((product) => {
     const article = createEl('article', 'card');
     const favBtn = createEl('button', 'btn small card-fav', state.favorites.has(product.slug) ? '★' : '☆');
