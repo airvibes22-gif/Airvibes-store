@@ -625,8 +625,7 @@ function renderStore() {
 
   if (featured) {
   const hero = document.createElement('div');
-  hero.className = 'featured-product';
-
+  hero.className = 'featured-product fade-in';
   hero.innerHTML = `
     <img src="${featured.coverImage}" class="featured-img" />
     <div class="featured-info">
@@ -644,7 +643,7 @@ function renderStore() {
   }
   
   items.forEach((product) => {
-    const article = createEl('article', 'card');
+    const article = createEl('article', 'card fade-in');
     const favBtn = createEl('button', 'btn small card-fav', state.favorites.has(product.slug) ? '★' : '☆');
     favBtn.type = 'button';
     favBtn.setAttribute('aria-label', 'Favorito');
