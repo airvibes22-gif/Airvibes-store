@@ -115,11 +115,17 @@ img {
 }
 
 .tab.active,
-.btn-accent,
 .chip.active,
 .store-btn.active {
   border-color: var(--accent);
   box-shadow: inset 0 0 0 1px var(--accent), 0 0 24px rgba(255, 90, 31, 0.12);
+}
+
+.btn-accent {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  font-weight: 700;
 }
 
 .btn.small {
@@ -180,7 +186,7 @@ img {
 }
 
 .panel-body {
-  padding: 16px;
+  padding: 20px;
 }
 
 .switches,
@@ -359,8 +365,7 @@ textarea {
   border-color: var(--accent);
 }
 
-.preview-name,
-.viewer-name {
+.preview-name {
   margin: 0;
   font-size: 46px;
   line-height: 0.92;
@@ -368,6 +373,14 @@ textarea {
   font-style: italic;
   text-transform: uppercase;
   letter-spacing: -2px;
+}
+
+.viewer-name {
+  margin: 0;
+  font-size: 32px;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -1px;
 }
 
 .preview-copy {
@@ -531,8 +544,9 @@ textarea {
 
 .viewer-grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 16px;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 28px;
+  align-items: start;
 }
 
 .viewer-copy {
@@ -552,8 +566,16 @@ textarea {
 }
 
 .gallery-main {
+  width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
+  border-radius: 20px;
+  background: #111;
+  transition: transform 0.4s ease;
+}
+
+.gallery-main:hover {
+  transform: scale(1.02);
 }
 
 .thumbs {
@@ -565,8 +587,15 @@ textarea {
 .thumbs img {
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border: 1px solid var(--line);
-  cursor: pointer;
+  border-radius: 12px;
+  border: 1px solid #111;
+  opacity: 0.6;
+  transition: all 0.2s ease;
+}
+
+.thumbs img:hover {
+  opacity: 1;
+  border-color: var(--accent);
 }
 
 .back-btn {
