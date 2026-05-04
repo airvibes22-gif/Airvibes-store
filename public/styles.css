@@ -700,3 +700,35 @@ textarea {
   font-size: 15px;
   line-height: 1.6;
 }
+
+.featured-product {
+  grid-column: 1 / -1;
+  position: relative;
+  border-radius: 26px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.featured-img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  filter: brightness(0.85);
+}
+
+.featured-info {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.featured-info h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.featured-info p {
+  margin: 4px 0 10px;
+  color: #ccc;
+  }
