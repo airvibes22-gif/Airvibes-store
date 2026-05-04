@@ -644,13 +644,27 @@ function renderStore() {
   
   items.forEach((product) => {
     const article = createEl('article', 'card fade-in');
-    const favBtn = createEl('button', 'btn small card-fav', state.favorites.has(product.slug) ? '★' : '☆');
+    const favBtn = createEl('button', 'btn small card-fav', state.favorites.has(product.slug) ? '★' : '☆')
     favBtn.type = 'button';
     favBtn.setAttribute('aria-label', 'Favorito');
     favBtn.addEventListener('click', () => {
       toggleFavorite(product.slug);
     });
 
+    const buyBtn = createEl('button', 'btn', 'WhatsApp');
+buyBtn.type = 'button';
+
+buyBtn.addEventListener('click', () => {
+  openWhatsApp([
+    'Hola, quiero este producto de AirVibes:',
+    '',
+    product.name,
+    money(product.price),
+    `Categoría: ${categoryLabel(product.category)}`,
+    `Estado: ${statusLabel(product.status)}`
+  ]);
+});
+    
     const image = createEl('img', 'card-cover');
     image.src = product.coverImage;
     image.alt = product.name;
@@ -662,17 +676,27 @@ function renderStore() {
     const meta = createEl('div', 'card-meta', `${categoryLabel(product.category)} · ${statusLabel(product.status)}`);
 
     const actions = createEl('div', 'card-actions');
-    const viewBtn = createEl('button', 'btn btn-accent', 'Ver');
-    viewBtn.type = 'button';
-    viewBtn.addEventListener('click', () => {
-      openProduct(product.slug, { countView: true, syncUrl: true });
-    });
 
-    const addBtn = createEl('button', 'btn', 'Agregar');
-    addBtn.type = 'button';
-    addBtn.addEventListener('click', () => addToCart(product.slug));
+const viewBtn = createEl('button', 'btn btn-accent', 'Ver');
+viewBtn.type = 'button';
+viewBtn.addEventListener('click', () => {
+  openProduct(product.slug, { countView: true, syncUrl: true });
+});
 
-    actions.append(viewBtn, addBtn);
+const buyBtn = createEl('button', 'btn', 'WhatsApp');
+buyBtn.type = 'button';
+buyBtn.addEventListener('click', () => {
+  openWhatsApp([
+    'Hola, quiero este producto de AirVibes:',
+    '',
+    product.name,
+    money(product.price),
+    `Categoría: ${categoryLabel(product.category)}`,
+    `Estado: ${statusLabel(product.status)}`
+  ]);
+});
+
+actions.append(viewBtn, buyBtn);
     body.append(name, price, meta, actions);
 
     if (state.admin) {
