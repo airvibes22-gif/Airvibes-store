@@ -457,6 +457,23 @@ textarea {
   box-shadow: 0 30px 60px rgba(0,0,0,0.5);
 }
 
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.4),
+    transparent
+  );
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
 .card-cover {
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -493,6 +510,7 @@ textarea {
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 0.5px;
+  color: #fff;
 }
 
 .card-meta {
@@ -501,7 +519,8 @@ textarea {
   text-transform: uppercase;
   letter-spacing: 1px;
   margin: 6px 0 10px;
-}
+  opacity: 0.7;
+    }
 
 .card-actions {
   display: grid;
@@ -789,4 +808,5 @@ textarea {
   letter-spacing: 1px;
   text-transform: uppercase;
   backdrop-filter: blur(8px);
+  pointer-events: none;
 }
