@@ -630,7 +630,7 @@ function renderStore() {
     <img src="${featured.coverImage}" class="featured-img" />
     <div class="featured-info">
       <h2>${featured.name}</h2>
-      <p>$${featured.price}</p>
+      <p>${money(featured.price)}</p>
       <button class="btn btn-accent">Ver producto</button>
     </div>
   `;
@@ -641,8 +641,8 @@ function renderStore() {
 
   dom.storeGrid.appendChild(hero);
   }
-  
-  items.forEach((product) => {
+
+  items.slice(1).forEach((product) => {
     const article = createEl('article', 'card fade-in');
     const favBtn = createEl('button', 'btn small card-fav', state.favorites.has(product.slug) ? '★' : '☆')
     favBtn.type = 'button';
@@ -671,14 +671,16 @@ viewBtn.addEventListener('click', () => {
 
 const buyBtn = createEl('button', 'btn', 'WhatsApp');
 buyBtn.type = 'button';
+
 buyBtn.addEventListener('click', () => {
   openWhatsApp([
-    'Hola, quiero este producto de AirVibes:',
+    'Hola AirVibes, quiero este par:',
     '',
     product.name,
     money(product.price),
     `Categoría: ${categoryLabel(product.category)}`,
-    `Estado: ${statusLabel(product.status)}`
+    `Estado: ${statusLabel(product.status)}`,
+    `Link: ${productUrl(product.slug)}`
   ]);
 });
 
