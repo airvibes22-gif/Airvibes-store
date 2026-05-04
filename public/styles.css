@@ -709,26 +709,47 @@ textarea {
   margin-bottom: 10px;
 }
 
+.featured-product::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.85),
+    rgba(0,0,0,0.2),
+    transparent
+  );
+}
+
 .featured-img {
   width: 100%;
   height: 320px;
   object-fit: cover;
-  filter: brightness(0.85);
+  filter: brightness(0.65) contrast(1.1);
 }
 
 .featured-info {
   position: absolute;
-  bottom: 20px;
-  left: 20px;
+  bottom: 24px;
+  left: 24px;
+  z-index: 2;
 }
 
 .featured-info h2 {
   margin: 0;
-  font-size: 28px;
-  font-weight: 700;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -1px;
 }
 
 .featured-info p {
-  margin: 4px 0 10px;
-  color: #ccc;
+  margin: 6px 0 12px;
+  color: #bbb;
+  font-size: 14px;
   }
+
+.featured-info .btn {
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+}
