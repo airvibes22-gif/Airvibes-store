@@ -650,20 +650,6 @@ function renderStore() {
     favBtn.addEventListener('click', () => {
       toggleFavorite(product.slug);
     });
-
-    const buyBtn = createEl('button', 'btn', 'WhatsApp');
-buyBtn.type = 'button';
-
-buyBtn.addEventListener('click', () => {
-  openWhatsApp([
-    'Hola, quiero este producto de AirVibes:',
-    '',
-    product.name,
-    money(product.price),
-    `Categoría: ${categoryLabel(product.category)}`,
-    `Estado: ${statusLabel(product.status)}`
-  ]);
-});
     
     const image = createEl('img', 'card-cover');
     image.src = product.coverImage;
