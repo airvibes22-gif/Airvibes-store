@@ -650,6 +650,24 @@ function renderStore() {
     favBtn.addEventListener('click', () => {
       toggleFavorite(product.slug);
     });
+
+    const statusBadge = createEl('div', 'product-status-badge');
+
+if (product.status === 'last_unit') {
+  statusBadge.textContent = 'ÚLTIMA UNIDAD';
+} else if (product.status === 'reserved') {
+  statusBadge.textContent = 'RESERVADO';
+} else if (product.status === 'sold') {
+  statusBadge.textContent = 'VENDIDO';
+} else if (isNewProduct(product)) {
+  statusBadge.textContent = 'NUEVO';
+} else {
+  statusBadge.textContent = '';
+}
+
+if (!statusBadge.textContent) {
+  statusBadge.classList.add('hidden');
+}
     
     const image = createEl('img', 'card-cover');
     image.src = product.coverImage;
@@ -669,17 +687,17 @@ viewBtn.addEventListener('click', () => {
   openProduct(product.slug, { countView: true, syncUrl: true });
 });
 
-const buyBtn = createEl('button', 'btn', 'WhatsApp');
+const buyBtn = createEl('button', 'btn', 'Comprar');
 buyBtn.type = 'button';
 
 buyBtn.addEventListener('click', () => {
   openWhatsApp([
-    'Hola AirVibes, quiero este par:',
+    'Hola AirVibes, quiero comprar este par:',
     '',
     product.name,
     money(product.price),
     `Categoría: ${categoryLabel(product.category)}`,
-    `Talla: ${product.sizes?.[0] || 'Por confirmar'}`
+    `Talla: ${product.sizes?.[0] || 'Por confirmar'}`,
     `Estado: ${statusLabel(product.status)}`,
     `Link: ${productUrl(product.slug)}`
   ]);
@@ -702,7 +720,7 @@ actions.append(viewBtn, buyBtn);
       body.append(adminActions);
     }
 
-    article.append(favBtn, image, body);
+    article.append(favBtn, statusBadge, image, body);
     dom.storeGrid.append(article);
   });
 
