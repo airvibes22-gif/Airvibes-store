@@ -646,3 +646,28 @@ textarea {
     min-width: 0;
   }
 }
+
+.hero-label {
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  margin: 8px 0 10px;
+  max-width: 720px;
+  font-size: clamp(40px, 8vw, 84px);
+  line-height: 0.92;
+  letter-spacing: -3px;
+  font-weight: 800;
+}
+
+.hero-copy {
+  max-width: 520px;
+  margin: 0;
+  color: #aaa;
+  font-size: 15px;
+  line-height: 1.6;
+}
